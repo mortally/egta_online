@@ -3,6 +3,7 @@ config/initializers/setup_mail.rb
 .autotest
 .rspec
 .bundle
+.sass-cache
 db/*.sqlite3
 log/*.log
 tmp/**/*
