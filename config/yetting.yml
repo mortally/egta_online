@@ -1,11 +1,11 @@
 development:
-    host: "nyx-login-amd.engin.umich.edu"
+    host: "nyx-login.engin.umich.edu"
     deploy_path: "/home/wellmangroup/many-agent-simulations"
 
 test:
-    host: "d-108-249.eecs.umich.edu"
-    deploy_path: "/home/bcassell/Test"
+    host: "nyx-login.engin.umich.edu"
+    deploy_path: "/home/wellmangroup/many-agent-simulations"
 
 production:
-    host: "nyx-login-amd.engin.umich.edu"
+    host: "nyx-login.engin.umich.edu"
     deploy_path: "/home/wellmangroup/many-agent-simulations"

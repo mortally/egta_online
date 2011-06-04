@@ -13,9 +13,8 @@ class Scheduler
   belongs_to :simulator
   belongs_to :run_time_configuration
 
-  after_save :set_run_time_configuration
 
-  validates_presence_of :process_memory, :simulator
+  validates_presence_of :process_memory
   validates_numericality_of :process_memory, :only_integer => true
 
   validates_presence_of :time_per_sample

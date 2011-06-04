@@ -12,7 +12,6 @@ module GameSchedulersHelper
 
   def show_fields(entry)
     [Hash[:name => "Simulator", :value => entry.simulator.fullname],
-    Hash[:name => "Run time configuration", :value => entry.run_time_configuration.parameters],
     Hash[:name => "Max samples", :value => entry.max_samples],
     Hash[:name => "Samples per simulation", :value => entry.samples_per_simulation],
     Hash[:name => "Process memory (in MB)", :value => entry.process_memory],

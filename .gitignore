@@ -13,3 +13,4 @@ simulators
 db/*
 spec/support/testaccount.rb
 spec/fabricators/account_fabricator.rb
+spec/lib/server_nyx_proxy_spec.rb

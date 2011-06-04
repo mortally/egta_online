@@ -4,13 +4,7 @@ Feature: Virtual game search
   I want game search to produce a page for the game's virtual record
 
 Background:
-  Given 1 user
-  And I am on the sign in page
-  And I fill in the following:
-    | Email    | test@test.com |
-    | Password | stuff1        |
-  And I check "Remember me"
-  And I press "Sign in"
+  Given I am signed in
 
 Scenario: Creating a virtual game from 1 profile
   Given 1 simulator

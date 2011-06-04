@@ -1,0 +1,4 @@
+%h2 Set Run Time Configuration
+= simple_form_for @scheduler, :url => "/#{plural_name}/step3_commit/#{@scheduler.id}" do |f|
+  =render :partial => "schedulers/parameters", :object => Simulator.find(@scheduler.simulator_id).run_time_configurations.first.parameters
+  = f.button :submit, "Set Configuration"

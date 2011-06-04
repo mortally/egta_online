@@ -1,6 +1,5 @@
 EgtMongoid::Application.routes.draw do
 
-  #indexers
   devise_for :users
   resources :accounts
   resources :profiles
@@ -11,6 +10,8 @@ EgtMongoid::Application.routes.draw do
       post :add_strategy, :remove_strategy
     end
   end
+
+  match "/game_schedulers/:action/:id" => "game_schedulers"
   resources :simulators, :except => :edit do
     member do
       post :add_strategy, :remove_strategy

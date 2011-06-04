@@ -1,0 +1,3 @@
+- parameters.each_pair do |x, y|
+  =label :run_time_configuration, "parameters[#{x}]", x.capitalize
+  .input=text_field :run_time_configuration, "parameters[#{x}]", :value => y

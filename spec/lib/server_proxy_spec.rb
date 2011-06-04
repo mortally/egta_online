@@ -13,9 +13,9 @@ describe ServerProxy do
       staging_session.stub_chain(:scp, :upload!).and_return("")
     end
     it "should set up the simulator on the remote server" do
-      staging_session.should_receive(:exec!).with("rm -rf #{Yetting.deploy_path}/MyName-1*")
+      staging_session.should_receive(:exec!).with("rm -rf #{Yetting.deploy_path}/MyName-1*; rm -rf #{Yetting.deploy_path}/MyName.zip")
       staging_session.scp.should_receive(:upload!).with(simulator.simulator_source.path, Yetting.deploy_path)
-      staging_session.should_receive(:exec!).with("cd #{Yetting.deploy_path}; unzip -u MyName.zip -d MyName-1; mkdir MyName-1/simulations")
+      staging_session.should_receive(:exec!).with("cd #{Yetting.deploy_path}; unzip -uqq MyName.zip -d MyName-1; mkdir MyName-1/simulations")
       staging_session.should_receive(:exec!).with("cd #{Yetting.deploy_path}; chmod -R ug+rwx MyName-1")
       server_proxy.setup_simulator(simulator)
     end
