@@ -9,7 +9,7 @@ log/*.log
 tmp/**/*
 public/public/uploads
 public/uploads
-simulators
+./simulators
 db/*
 spec/support/testaccount.rb
 spec/fabricators/account_fabricator.rb

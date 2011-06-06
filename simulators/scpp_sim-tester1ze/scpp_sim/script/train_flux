@@ -1,0 +1,7 @@
+#!/bin/bash
+
+STRATNAME=$1
+NUM_AGENT=$2
+
+sed script/pbs_train_flux_wrapper -e "s/STRATNAME/$STRATNAME/" -e "s/NUM_AGENT/$NUM_AGENT/" > script/pbs_train
+qsub script/pbs_train
