@@ -4,6 +4,6 @@ Fabricator(:simulator) do
   setup { true }
   after_create do |sim|
     sim.run_time_configurations << Fabricate(:run_time_configuration)
-    gs = Fabricate(:game_scheduler, :simulator_id => sim.id)
+    gs = Fabricate(:game_scheduler, :simulator_id => sim.id, :run_time_configuration_id => sim.run_time_configurations.first.id)
   end
 end

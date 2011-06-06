@@ -7,13 +7,11 @@ defaults: &defaults
   #     port: 27019
 
 development:
-  # <<: *defaults
-  host: localhost
+  <<: *defaults
   database: egt_web_interface_development
 
 test:
-  # <<: *defaults
-  host: localhost
+  <<: *defaults
   database: egt_web_interface_test
 
 # set these environment variables on your prod server

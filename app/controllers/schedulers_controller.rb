@@ -33,9 +33,7 @@ class SchedulersController < StrategyController
   def step3_commit
     @scheduler = Scheduler.find(params[:id])
     @simulator = Simulator.find(@scheduler.simulator_id)
-    @rtc = RunTimeConfiguration.new(:parameters => params[:run_time_configuration][:parameters])
-    @simulator.run_time_configurations << @rtc
-    @rtc.save!
+    @rtc = @simulator.run_time_configurations.find_or_create_by(:parameters => params[:run_time_configuration][:parameters])
     @scheduler.update_attribute(:run_time_configuration_id, @rtc.id)
     redirect_to url_for(:action => "show", :id => entry.id), :notice => "#{klass_name} was successfully created."
   end

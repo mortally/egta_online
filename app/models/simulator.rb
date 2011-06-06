@@ -42,7 +42,7 @@ class Simulator
   end
 
   def location
-    ROOT_PATH+"/simulators/"+fullname
+    ROOT_PATH+"/simulator_uploads/"+fullname
   end
 
   def fullname

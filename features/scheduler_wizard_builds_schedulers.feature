@@ -6,9 +6,10 @@ Feature: Scheduler wizard builds schedulers
 Background:
   Given I am signed in
 
-@wip
 Scenario: Game schedulers can be created
-  Given 1 simulator
+  Given the following simulator:
+    | name    | epp_sim |
+    | version | testing0 |
   And I am on the new game scheduler page
   When I fill in the following:
     | Max samples            | 10   |
@@ -24,7 +25,6 @@ Scenario: Game schedulers can be created
   When I fill in "A" with "3"
   And I press "Set Configuration"
   Then I should see "Game Scheduler was successfully created."
-  And show me the page
   And I should see the following table rows:
     | Simulator              | epp_sim-testing0 |
     | Max samples            | 10               |

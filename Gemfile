@@ -4,6 +4,7 @@ source 'http://gems.github.com'
 gem 'rails', '3.0.7'
 
 # Deploy with Capistrano
+gem 'state_machine'
 gem 'capistrano'
 gem 'yettings'
 gem 'god'
