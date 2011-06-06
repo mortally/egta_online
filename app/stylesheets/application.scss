@@ -71,7 +71,7 @@ body {
     :hover{
         background-color: $header-color;
     }
-    #box{
+    .box{
         @include box-flex(1);
     }
 }

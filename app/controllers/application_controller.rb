@@ -2,8 +2,8 @@
 class ApplicationController < ActionController::Base
   clear_helpers
   protect_from_forgery
-  before_filter :checkup
   before_filter :authenticate_user!
+  before_filter :checkup
 
   def checkup
     # @sample_count = 0

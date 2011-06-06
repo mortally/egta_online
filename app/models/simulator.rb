@@ -16,12 +16,28 @@ class Simulator
   has_many :profiles, :dependent => :destroy
   has_many :schedulers, :dependent => :destroy
   has_many :run_time_configurations
+  validate :parameters
   validate :setup_simulator
-  after_create :set_setup_to_true
+  after_create { run_time_configurations << @rtc; @rtc.save! unless @rtc == nil}
 
-  def set_setup_to_true
-    if setup == false
-      self.update_attributes(:setup => true)
+  def parameters
+    begin
+      if setup == false
+        system("rm -rf #{location}/#{name}")
+        puts "removed"
+        system("unzip -uqq #{simulator_source.path} -d #{location}")
+        puts "unzipped"
+        File.open(location+"/"+name+"/simulation_spec.yaml") do |io|
+          @rtc = RunTimeConfiguration.new(:parameters => YAML.load(io)["web parameters"])
+          if @rtc.save != true || @rtc.parameters == nil
+            raise "invalid rtc"
+          end
+        end
+      else
+        return
+      end
+    rescue
+      errors.add(:run_time_configurations, "has invalid run time configuration file")
     end
   end
 
@@ -36,13 +52,10 @@ class Simulator
   def setup_simulator
     begin
       if setup == false
-        system("rm -rf #{location}/#{name}")
-        system("unzip -uqq #{simulator_source.path} -d #{location}")
-        temp_hash = Hash.new
-        File.open(location+"/"+name+"/simulation_spec.yaml"){|io| self.parameters = YAML.load(io)["web parameters"]}
         sp = ServerProxy.new
         sp.start
         sp.setup_simulator(self)
+        update_attribute(:setup, true)
       else
         return
       end

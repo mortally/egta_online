@@ -45,6 +45,15 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+Given /^I am signed in$/ do
+  Given "1 user"
+  Given "I am on the sign in page"
+  Given "I fill in \"test@test.com\" for \"Email\""
+  Given "I fill in \"stuff1\" for \"Password\""
+  Given "I check \"Remember me\""
+  Given "I press \"Sign in\""
+end
+
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end

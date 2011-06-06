@@ -9,8 +9,6 @@ class Simulation
   belongs_to :account, :inverse_of => :simulations
   belongs_to :profile, :inverse_of => :simulations
   belongs_to :scheduler
-  delegate :game, :to => :profile
-  delegate :game_id, :to => :profile
 
   field :size, :type => Integer
   field :state
@@ -32,29 +30,4 @@ class Simulation
 
   validates_presence_of :state, :on => :create, :message => "can't be blank"
   validates_numericality_of :size, :only_integer=>true, :greater_than=>0
-
-  state_machine :state, :initial => :pending do
-    state :pending
-    state :queued
-    state :running
-    state :complete
-    state :failed
-
-    event :queue do
-      transition :pending => :queued
-    end
-
-    event :fail do
-      transition [:pending, :queued, :running] => :failed
-    end
-
-    event :start do
-      transition :queued => :running
-    end
-
-    event :finish do
-      transition [:pending, :queued, :running, :failed] => :complete
-    end
-
-  end
 end

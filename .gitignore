@@ -3,6 +3,7 @@ config/initializers/setup_mail.rb
 .autotest
 .rspec
 .bundle
+.sass-cache
 db/*.sqlite3
 log/*.log
 tmp/**/*
@@ -12,3 +13,4 @@ simulators
 db/*
 spec/support/testaccount.rb
 spec/fabricators/account_fabricator.rb
+spec/lib/server_nyx_proxy_spec.rb

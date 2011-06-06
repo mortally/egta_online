@@ -1,0 +1,5 @@
+%h2 Select Simulator
+= simple_form_for @scheduler, :url => "/#{plural_name}/step2_commit/#{@scheduler.id}" do |f|
+  = f.label :simulator_id, "Simulator"
+  .input= f.collection_select :simulator_id, Simulator.all, :id, :fullname
+  = f.button :submit, "Choose Simulator"
