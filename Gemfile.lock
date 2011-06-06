@@ -224,6 +224,7 @@ GEM
     stalker (0.9.0)
       beanstalk-client
       json_pure
+    state_machine (1.0.1)
     statistics2 (0.54)
     statsample (0.18.0)
       dirty-memoize (~> 0.0)
@@ -292,5 +293,6 @@ DEPENDENCIES
   simple_form
   spork
   stalker
+  state_machine
   statsample-optimization
   yettings

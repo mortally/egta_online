@@ -2,7 +2,8 @@ class Scheduler
   include Mongoid::Document
 
   has_many :simulations, :inverse_of => :scheduler
-  scope :active, where(:active=>true)
+  scope :active, where(active: true).excludes(run_time_configuration_id: nil, simulator_id: nil)
+  field :name
   field :active, :type => Boolean
   field :process_memory, :type => Integer
   field :time_per_sample, :type => Integer
@@ -10,18 +11,13 @@ class Scheduler
   field :samples_per_simulation, :type => Integer
   field :max_samples, :type => Integer
 
+  after_create :set_run_time_configuration
   belongs_to :simulator
   belongs_to :run_time_configuration
 
 
-  validates_presence_of :process_memory
-  validates_numericality_of :process_memory, :only_integer => true
-
-  validates_presence_of :time_per_sample
-  validates_numericality_of :time_per_sample, :only_integer => true
-
-  validates_presence_of :jobs_per_request
-  validates_numericality_of :jobs_per_request, :only_integer => true
+  validates_presence_of :process_memory, :name, :time_per_sample, :jobs_per_request
+  validates_numericality_of :process_memory, :time_per_sample, :jobs_per_request, :only_integer => true
   validates_numericality_of :samples_per_simulation, :max_samples, :only_integer=>true, :greater_than=>0
 
   def name

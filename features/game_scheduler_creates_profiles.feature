@@ -3,11 +3,9 @@ Feature: Game scheduler creates profiles
   As a developer
   I want schedulers to take on the responsibility of creating profiles
 
-Background:
-  Given I am signed in
-
 Scenario: Profile generation works for two strategies
-  Given 1 simulator
+  Given I am signed in
+  And 1 simulator
   And that simulator has the strategy array "['A', 'B']"
   And I am on the game scheduler show page
   When I select "A" from "strategy"
@@ -22,6 +20,7 @@ Scenario: Profile generation works for two strategies
     | B: 2       | 0 samples |
 
 Scenario: Profile already exists with the same run time configuration
+  Given I am signed in
   Given 1 simulator
   And that simulator has the strategy array "['A', 'B']"
   And that simulator has the following profile:
