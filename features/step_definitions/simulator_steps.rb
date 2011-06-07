@@ -15,3 +15,12 @@ Given /^the second profile belongs to that run time configuration$/ do
   @run_time_configuration.profiles << @simulator.profiles[1]
   @simulator.profiles.last.save!
 end
+
+Then /^I should have the simulator with the name "([^"]*)"$/ do |name|
+  Simulator.where(:name => name).count.should == 1
+end
+
+Then /^I should not have the simulator with the name "([^"]*)"$/ do |name|
+  Simulator.where(:name => name).count.should == 0
+end
+
